@@ -27,4 +27,12 @@ public class GlobalExceptionHandler {
         body.put("message", e.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(PasswordMismatchException.class)
+    public ResponseEntity<Object> handlePasswordMismatchException(PasswordMismatchException e) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", e.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
 }
