@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 public record UserRegisterRequest(
 
         @NotBlank(message = "Name cannot be blank")
-        String name,
+        String fullName,
 
         @NotBlank(message = "Email cannot be blank")
         @Email(message = "Email must be valid")
