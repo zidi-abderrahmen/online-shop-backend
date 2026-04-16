@@ -46,7 +46,7 @@ public class AuthService {
 
     public UserResponse loginUser(UserLoginRequest request) {
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new EmailNotFoundException("Email not found"));
+                .orElseThrow(() -> new InvalidEmailOrPasswordException("Invalid email or password"));
 
         if (!passwordEncoder.matches(request.password(), user.getPassword())) {
             throw new InvalidEmailOrPasswordException("Invalid email or password");
