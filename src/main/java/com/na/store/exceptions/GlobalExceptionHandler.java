@@ -29,8 +29,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmailNotFound.class)
-    public ResponseEntity<Object> handleEmailNotFoundException(EmailNotFound e) {
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ResponseEntity<Object> handleEmailNotFoundException(EmailNotFoundException e) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", e.getMessage());
