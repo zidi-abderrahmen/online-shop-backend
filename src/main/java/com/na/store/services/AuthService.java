@@ -1,7 +1,7 @@
 package com.na.store.services;
 
 import com.na.store.dtos.UserRegisterRequest;
-import com.na.store.dtos.UserRegisterResponse;
+import com.na.store.dtos.UserResponse;
 import com.na.store.entities.User;
 import com.na.store.exceptions.EmailAlreadyExistsException;
 import com.na.store.exceptions.PasswordMismatchException;
@@ -21,7 +21,7 @@ public class AuthService {
     private final UserResponseMapper userResponseMapper;
 
     @Transactional
-    public UserRegisterResponse createNewUser(UserRegisterRequest request) {
+    public UserResponse createNewUser(UserRegisterRequest request) {
         if (userRepository.existsByEmail(request.email())) {
             throw new EmailAlreadyExistsException("Email already exists");
         }

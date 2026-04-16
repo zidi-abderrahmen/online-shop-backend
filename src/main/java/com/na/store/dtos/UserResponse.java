@@ -1,6 +1,6 @@
 package com.na.store.dtos;
 
-public record UserRegisterResponse(
+public record UserResponse(
 
         String id,
         String name,
