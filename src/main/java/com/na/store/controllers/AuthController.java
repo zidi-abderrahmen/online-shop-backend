@@ -6,6 +6,7 @@ import com.na.store.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +17,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserRegisterResponse register(@Valid @RequestBody UserRegisterRequest request) {
-        return authService.createNewUser(request);
+    public ResponseEntity<UserRegisterResponse> register(@Valid @RequestBody UserRegisterRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createNewUser(request));
     }
 }
