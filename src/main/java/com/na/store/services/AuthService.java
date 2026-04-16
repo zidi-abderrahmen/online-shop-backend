@@ -1,9 +1,12 @@
 package com.na.store.services;
 
+import com.na.store.dtos.UserLoginRequest;
 import com.na.store.dtos.UserRegisterRequest;
 import com.na.store.dtos.UserResponse;
 import com.na.store.entities.User;
 import com.na.store.exceptions.EmailAlreadyExistsException;
+import com.na.store.exceptions.EmailNotFoundException;
+import com.na.store.exceptions.InvalidEmailOrPasswordException;
 import com.na.store.exceptions.PasswordMismatchException;
 import com.na.store.mappers.UserResponseMapper;
 import com.na.store.repositories.UserRepository;
@@ -39,5 +42,16 @@ public class AuthService {
         User savedUser = userRepository.save(newUser);
 
         return userResponseMapper.toDto(savedUser);
+    }
+
+    public UserResponse loginUser(UserLoginRequest request) {
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new EmailNotFoundException("Email not found"));
+
+        if (!passwordEncoder.matches(request.password(), user.getPassword())) {
+            throw new InvalidEmailOrPasswordException("Invalid email or password");
+        }
+
+        return userResponseMapper.toDto(user);
     }
 }
