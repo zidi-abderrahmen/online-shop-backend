@@ -47,6 +47,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @Version
+    private Integer version;
+
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
