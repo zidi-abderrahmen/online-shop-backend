@@ -1,6 +1,6 @@
 package com.na.store.mappers;
 
-import com.na.store.dtos.ProductResponse;
+import com.na.store.dtos.product.ProductResponse;
 import com.na.store.entities.Product;
 import org.mapstruct.Mapper;
 

@@ -1,6 +1,6 @@
 package com.na.store.mappers;
 
-import com.na.store.dtos.UserRegisterRequest;
+import com.na.store.dtos.user.UserRegisterRequest;
 import com.na.store.entities.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

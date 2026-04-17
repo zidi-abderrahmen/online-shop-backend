@@ -1,7 +1,7 @@
 package com.na.store.services;
 
-import com.na.store.dtos.ProductRequest;
-import com.na.store.dtos.ProductResponse;
+import com.na.store.dtos.product.ProductRequest;
+import com.na.store.dtos.product.ProductResponse;
 import com.na.store.entities.Product;
 import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.NotFoundException;

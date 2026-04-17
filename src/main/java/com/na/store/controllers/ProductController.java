@@ -1,7 +1,7 @@
 package com.na.store.controllers;
 
-import com.na.store.dtos.ProductRequest;
-import com.na.store.dtos.ProductResponse;
+import com.na.store.dtos.product.ProductRequest;
+import com.na.store.dtos.product.ProductResponse;
 import com.na.store.services.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
 package com.na.store.services;
 
-import com.na.store.dtos.UserLoginRequest;
-import com.na.store.dtos.UserRegisterRequest;
-import com.na.store.dtos.UserResponse;
+import com.na.store.dtos.user.UserLoginRequest;
+import com.na.store.dtos.user.UserRegisterRequest;
+import com.na.store.dtos.user.UserResponse;
 import com.na.store.entities.User;
 import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.InvalidEmailOrPasswordException;

@@ -1,8 +1,8 @@
 package com.na.store.controllers;
 
-import com.na.store.dtos.UserLoginRequest;
-import com.na.store.dtos.UserRegisterRequest;
-import com.na.store.dtos.UserResponse;
+import com.na.store.dtos.user.UserLoginRequest;
+import com.na.store.dtos.user.UserRegisterRequest;
+import com.na.store.dtos.user.UserResponse;
 import com.na.store.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
