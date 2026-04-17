@@ -1,6 +1,7 @@
 package com.na.store.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.na.store.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -41,6 +42,10 @@ public class User {
     )
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
