@@ -4,6 +4,7 @@ import com.na.store.dtos.user.UserLoginRequest;
 import com.na.store.dtos.user.UserRegisterRequest;
 import com.na.store.dtos.user.UserResponse;
 import com.na.store.entities.User;
+import com.na.store.enums.UserRole;
 import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.InvalidEmailOrPasswordException;
 import com.na.store.exceptions.PasswordMismatchException;
@@ -36,6 +37,7 @@ public class AuthService {
                 .name(request.fullName())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
+                .role(UserRole.USER)
                 .build();
 
         User savedUser = userRepository.save(newUser);
