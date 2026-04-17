@@ -9,12 +9,18 @@ import com.na.store.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductResponseMapper productResponseMapper;
+
+    public List<ProductResponse> getAllProduct() {
+        return productRepository.findAll().stream().map(productResponseMapper::toDto).toList();
+    }
 
     public ProductResponse saveProduct(ProductRequest request) {
         if (productRepository.existsByNameIgnoreCase(request.name())) {
