@@ -3,6 +3,7 @@ package com.na.store.dtos;
 import java.math.BigDecimal;
 
 public record ProductResponse(
+        String imageUrl,
         String name,
         String description,
         BigDecimal price
