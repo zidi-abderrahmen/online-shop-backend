@@ -21,8 +21,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<Object> handleEmailAlreadyExistsException(EmailAlreadyExistsException e) {
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Object> handleAlreadyExistsException(AlreadyExistsException e) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", e.getMessage());

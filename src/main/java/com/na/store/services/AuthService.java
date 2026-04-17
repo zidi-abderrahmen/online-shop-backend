@@ -4,8 +4,7 @@ import com.na.store.dtos.UserLoginRequest;
 import com.na.store.dtos.UserRegisterRequest;
 import com.na.store.dtos.UserResponse;
 import com.na.store.entities.User;
-import com.na.store.exceptions.EmailAlreadyExistsException;
-import com.na.store.exceptions.EmailNotFoundException;
+import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.InvalidEmailOrPasswordException;
 import com.na.store.exceptions.PasswordMismatchException;
 import com.na.store.mappers.UserResponseMapper;
@@ -26,7 +25,7 @@ public class AuthService {
     @Transactional
     public UserResponse createNewUser(UserRegisterRequest request) {
         if (userRepository.existsByEmail(request.email())) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new AlreadyExistsException("Email already exists");
         }
 
         if (!request.password().equals(request.confirmPassword())) {
