@@ -2,6 +2,8 @@ package com.na.store.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -31,7 +33,8 @@ public class Product {
     @Column(nullable = false, length = 500)
     private String description;
 
-    @NotBlank(message = "Price cannot be blank")
+    @NotNull(message = "Price cannot be blank")
+    @Positive(message = "Price must be positive")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
