@@ -9,7 +9,7 @@ import com.na.store.exceptions.InvalidEmailOrPasswordException;
 import com.na.store.exceptions.PasswordMismatchException;
 import com.na.store.mappers.UserResponseMapper;
 import com.na.store.repositories.UserRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
