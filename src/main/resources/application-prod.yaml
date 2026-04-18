@@ -4,6 +4,11 @@ application:
       secret: ${JWT_SECRET}
       expiration: ${JWT_EXPIRATION}
 
+  super_admin:
+    full_name: ${SUPER_ADMIN_FULL_NAME}
+    email: ${SUPER_ADMIN_EMAIL}
+    password: ${SUPER_ADMIN_PASSWORD}
+
 spring:
   datasource:
     url: ${DATABASE_URL}
