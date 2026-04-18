@@ -1,13 +1,10 @@
 package com.na.store.services;
 
-import com.na.store.dtos.user.UserLoginRequest;
-import com.na.store.dtos.user.UserLoginResponse;
 import com.na.store.dtos.user.UserRegisterRequest;
 import com.na.store.dtos.user.UserResponse;
 import com.na.store.entities.User;
 import com.na.store.enums.UserRole;
 import com.na.store.exceptions.AlreadyExistsException;
-import com.na.store.exceptions.InvalidEmailOrPasswordException;
 import com.na.store.exceptions.PasswordMismatchException;
 import com.na.store.mappers.UserResponseMapper;
 import com.na.store.repositories.UserRepository;
@@ -18,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class AdminAuthService {
+public class CreateAdminService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
