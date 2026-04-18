@@ -1,6 +1,7 @@
 package com.na.store.controllers;
 
 import com.na.store.dtos.user.UserLoginRequest;
+import com.na.store.dtos.user.UserLoginResponse;
 import com.na.store.dtos.user.UserRegisterRequest;
 import com.na.store.dtos.user.UserResponse;
 import com.na.store.services.AuthService;
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@Valid @RequestBody UserLoginRequest request) {
+    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest request) {
         return ResponseEntity.ok(authService.loginUser(request));
     }
 }

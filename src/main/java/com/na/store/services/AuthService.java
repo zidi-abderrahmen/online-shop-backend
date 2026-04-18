@@ -1,6 +1,7 @@
 package com.na.store.services;
 
 import com.na.store.dtos.user.UserLoginRequest;
+import com.na.store.dtos.user.UserLoginResponse;
 import com.na.store.dtos.user.UserRegisterRequest;
 import com.na.store.dtos.user.UserResponse;
 import com.na.store.entities.User;
@@ -22,6 +23,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserResponseMapper userResponseMapper;
+    private final JwtService jwtService;
 
     @Transactional
     public UserResponse createNewUser(UserRegisterRequest request) {
@@ -45,7 +47,7 @@ public class AuthService {
         return userResponseMapper.toDto(savedUser);
     }
 
-    public UserResponse loginUser(UserLoginRequest request) {
+    public UserLoginResponse loginUser(UserLoginRequest request) {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new InvalidEmailOrPasswordException("Invalid email or password"));
 
@@ -53,6 +55,7 @@ public class AuthService {
             throw new InvalidEmailOrPasswordException("Invalid email or password");
         }
 
-        return userResponseMapper.toDto(user);
+        String token = jwtService.generateToken(user);
+        return new UserLoginResponse(token, userResponseMapper.toDto(user));
     }
 }
