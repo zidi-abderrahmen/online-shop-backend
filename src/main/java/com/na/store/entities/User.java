@@ -5,15 +5,21 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.jspecify.annotations.NullMarked;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Entity @Table(name = "users")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
 @Builder
 @ToString(exclude = "password")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -55,4 +61,13 @@ public class User {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    @Override @NullMarked
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override @NonNull
+    public String getUsername() { return email; }
+
 }
