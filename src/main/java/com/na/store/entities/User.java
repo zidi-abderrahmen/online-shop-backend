@@ -28,6 +28,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Builder.Default
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
