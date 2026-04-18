@@ -33,7 +33,7 @@ public class SuperAdminSeeder {
                 User superAdmin = User.builder()
                         .name(fullName)
                         .email(email)
-                        .password(password)
+                        .password(passwordEncoder.encode(password))
                         .role(UserRole.SUPER_ADMIN)
                         .build();
 
