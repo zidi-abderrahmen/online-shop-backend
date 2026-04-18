@@ -1,3 +1,9 @@
+application:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expiration: ${JWT_EXPIRATION}
+
 spring:
   datasource:
     url: ${DATABASE_URL}
