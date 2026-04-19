@@ -45,8 +45,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidEmailOrPasswordException.class)
-    public ResponseEntity<Object> handleInvalidEmailOrPasswordException(InvalidEmailOrPasswordException e) {
+    @ExceptionHandler(InvalidException.class)
+    public ResponseEntity<Object> handleInvalidEmailOrPasswordException(InvalidException e) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", e.getMessage());

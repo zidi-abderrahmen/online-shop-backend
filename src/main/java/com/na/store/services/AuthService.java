@@ -7,7 +7,7 @@ import com.na.store.dtos.user.UserResponse;
 import com.na.store.entities.User;
 import com.na.store.enums.UserRole;
 import com.na.store.exceptions.AlreadyExistsException;
-import com.na.store.exceptions.InvalidEmailOrPasswordException;
+import com.na.store.exceptions.InvalidException;
 import com.na.store.exceptions.PasswordMismatchException;
 import com.na.store.mappers.UserResponseMapper;
 import com.na.store.repositories.UserRepository;
@@ -49,10 +49,10 @@ public class AuthService {
 
     public UserLoginResponse loginUser(UserLoginRequest request) {
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new InvalidEmailOrPasswordException("Invalid email or password"));
+                .orElseThrow(() -> new InvalidException("Invalid email or password"));
 
         if (!passwordEncoder.matches(request.password(), user.getPassword())) {
-            throw new InvalidEmailOrPasswordException("Invalid email or password");
+            throw new InvalidException("Invalid email or password");
         }
 
         String token = jwtService.generateToken(user);
