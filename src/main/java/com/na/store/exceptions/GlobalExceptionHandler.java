@@ -46,7 +46,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidException.class)
-    public ResponseEntity<Object> handleInvalidEmailOrPasswordException(InvalidException e) {
+    public ResponseEntity<Object> handleInvalidException(InvalidException e) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", e.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ExpiredException.class)
+    public ResponseEntity<Object> handleExpiredException(ExpiredException e) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", e.getMessage());
