@@ -3,6 +3,7 @@ application:
     jwt:
       secret: ${JWT_SECRET}
       expiration: ${JWT_EXPIRATION}
+      refresh-expiration: ${JWT_REFRESH_EXPIRATION}
 
   super_admin:
     full_name: ${SUPER_ADMIN_FULL_NAME}
