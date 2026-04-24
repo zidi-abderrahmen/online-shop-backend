@@ -74,7 +74,7 @@ public class AuthService {
         return new RefreshTokenResponse(newAccessToken, newRefreshToken.getToken());
     }
 
-    public void deleteRefreshToken(String token) {
-        refreshTokenService.deleteRefreshToken(token);
+    public void logout(RefreshTokenRequest request) {
+        refreshTokenService.deleteRefreshToken(request.token());
     }
 }
