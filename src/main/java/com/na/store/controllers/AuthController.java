@@ -1,5 +1,7 @@
 package com.na.store.controllers;
 
+import com.na.store.dtos.reftoken.RefreshTokenRequest;
+import com.na.store.dtos.reftoken.RefreshTokenResponse;
 import com.na.store.dtos.user.UserLoginRequest;
 import com.na.store.dtos.user.UserLoginResponse;
 import com.na.store.dtos.user.UserRegisterRequest;
@@ -26,5 +28,16 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest request) {
         return ResponseEntity.ok(authService.loginUser(request));
+    }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<RefreshTokenResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok(authService.refreshToken(request));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@Valid @RequestBody RefreshTokenRequest request) {
+        authService.logout(request);
+        return ResponseEntity.noContent().build();
     }
 }
