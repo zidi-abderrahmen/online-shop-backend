@@ -1,6 +1,5 @@
 package com.na.store.services;
 
-import com.na.store.dtos.reftoken.RefreshTokenResponse;
 import com.na.store.entities.RefreshToken;
 import com.na.store.entities.User;
 import com.na.store.exceptions.ExpiredException;
@@ -30,7 +29,7 @@ public class RefreshTokenService {
 
         RefreshToken refreshToken = RefreshToken.builder()
                 .token(UUID.randomUUID().toString())
-                .expirationDate(LocalDateTime.now().plusNanos(jwtRefreshExpiration))
+                .expirationDate(LocalDateTime.now().plus(Duration.ofMillis(jwtRefreshExpiration)))
                 .user(user)
                 .build();
 
