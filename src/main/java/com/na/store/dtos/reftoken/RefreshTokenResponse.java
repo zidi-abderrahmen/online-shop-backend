@@ -1,4 +1,4 @@
-package com.na.store.dtos;
+package com.na.store.dtos.reftoken;
 
 public record RefreshTokenResponse(
         String token,
