@@ -1,5 +1,6 @@
 package com.na.store.entities;
 
+import com.na.store.enums.ClotheSize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity @Table(name = "products")
 @AllArgsConstructor @NoArgsConstructor
@@ -21,9 +23,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Image URL cannot be blank")
-    @Column(nullable = false, length = 500)
-    private String imageUrl;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductImages> imagesUrl;
 
     @NotBlank(message = "Name cannot be blank")
     @Column(nullable = false, unique = true, length = 100)
@@ -37,6 +38,16 @@ public class Product {
     @Positive(message = "Price must be positive")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @NotNull(message = "Stock cannot be blank")
+    @Positive(message = "Stock must be positive")
+    @Column(nullable = false)
+    private int stock;
+
+    @NotNull(message = "Size cannot be blank")
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ClotheSize size = ClotheSize.M;
 
     @Version
     private Integer version;
