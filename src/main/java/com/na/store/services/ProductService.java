@@ -3,6 +3,7 @@ package com.na.store.services;
 import com.na.store.dtos.product.ProductRequest;
 import com.na.store.dtos.product.ProductResponse;
 import com.na.store.entities.Product;
+import com.na.store.entities.ProductImages;
 import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.NotFoundException;
 import com.na.store.mappers.ProductResponseMapper;
@@ -38,15 +39,24 @@ public class ProductService {
         }
 
         Product product = Product.builder()
-                .imageUrl(request.imageUrl())
                 .name(request.name())
                 .description(request.description())
                 .price(request.price())
+                .size(request.size())
+                .stock(request.stock())
                 .build();
 
-        Product savedProduct = productRepository.save(product);
+        List<ProductImages> images = request.imagesUrl().stream()
+                .map(img -> ProductImages.builder()
+                        .url(img.url())
+                        .altText(img.altText())
+                        .product(product)
+                        .build())
+                .toList();
 
-        return productResponseMapper.toDto(savedProduct);
+        product.setImagesUrl(images);
+
+        return productResponseMapper.toDto(productRepository.save(product));
     }
 
     @Transactional
@@ -59,10 +69,20 @@ public class ProductService {
             throw new AlreadyExistsException("Product with name '" + request.name() + "' already exists");
         }
 
+        List<ProductImages> images = request.imagesUrl().stream()
+                .map(img -> ProductImages.builder()
+                        .url(img.url())
+                        .altText(img.altText())
+                        .product(product)
+                        .build())
+                .toList();
+
         product.setName(request.name());
         product.setDescription(request.description());
         product.setPrice(request.price());
-        product.setImageUrl(request.imageUrl());
+        product.setSize(request.size());
+        product.setStock(request.stock());
+        product.setImagesUrl(images);
 
         return productResponseMapper.toDto(product);
     }
