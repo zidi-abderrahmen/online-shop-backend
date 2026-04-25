@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-@EnableMethodSecurity
 public class CreateAdminController {
 
     private final CreateAdminService createAdminService;
