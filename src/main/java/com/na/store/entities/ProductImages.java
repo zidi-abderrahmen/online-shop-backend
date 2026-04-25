@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-@Entity @Table(name = "product-images")
+@Entity @Table(name = "product_images")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
 @Builder
