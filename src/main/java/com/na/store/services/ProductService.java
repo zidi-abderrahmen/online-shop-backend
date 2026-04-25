@@ -42,7 +42,7 @@ public class ProductService {
                 .name(request.name())
                 .description(request.description())
                 .price(request.price())
-                .size(request.size())
+                .sizes(request.sizes())
                 .stock(request.stock())
                 .build();
 
@@ -80,7 +80,7 @@ public class ProductService {
         product.setName(request.name());
         product.setDescription(request.description());
         product.setPrice(request.price());
-        product.setSize(request.size());
+        product.setSizes(request.sizes());
         product.setStock(request.stock());
         product.setImagesUrl(images);
 

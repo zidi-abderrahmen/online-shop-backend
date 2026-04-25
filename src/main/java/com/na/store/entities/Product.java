@@ -3,6 +3,7 @@ package com.na.store.entities;
 import com.na.store.enums.ClotheSize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
@@ -34,20 +35,17 @@ public class Product {
     @Column(nullable = false, length = 500)
     private String description;
 
-    @NotNull(message = "Price cannot be blank")
+    @NotNull(message = "Price cannot be null")
     @Positive(message = "Price must be positive")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @NotNull(message = "Stock cannot be blank")
     @Positive(message = "Stock must be positive")
     @Column(nullable = false)
     private int stock;
 
-    @NotNull(message = "Size cannot be blank")
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private ClotheSize size = ClotheSize.M;
+    private List<ClotheSize> sizes;
 
     @Version
     private Integer version;

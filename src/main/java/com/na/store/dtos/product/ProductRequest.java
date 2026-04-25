@@ -23,14 +23,13 @@ public record ProductRequest(
         @NotBlank(message = "Description cannot be blank")
         String description,
 
-        @NotNull(message = "Price cannot be blank")
+        @NotNull(message = "Price cannot be null")
         @Positive(message = "Price must be positive")
         BigDecimal price,
 
-        @NotNull(message = "Stock cannot be blank")
         @Positive(message = "Stock must be positive")
         int stock,
 
-        @NotNull(message = "Size cannot be blank")
-        ClotheSize size
+        @NotEmpty(message = "Sizes cannot be empty")
+        List<ClotheSize> sizes
 ) {}

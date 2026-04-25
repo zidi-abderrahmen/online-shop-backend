@@ -13,5 +13,5 @@ public record ProductResponse(
         String description,
         BigDecimal price,
         int stock,
-        ClotheSize size
+        List<ClotheSize> sizes
 ) {}
