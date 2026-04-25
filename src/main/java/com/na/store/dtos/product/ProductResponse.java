@@ -1,7 +1,6 @@
 package com.na.store.dtos.product;
 
 import com.na.store.dtos.product.images.ProductImageResponse;
-import com.na.store.entities.ProductImages;
 import com.na.store.enums.ClotheSize;
 
 import java.math.BigDecimal;
