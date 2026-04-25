@@ -2,6 +2,7 @@ package com.na.store.dtos.product;
 
 import com.na.store.dtos.product.images.ProductImagesRequest;
 import com.na.store.enums.ClotheSize;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.util.List;
 public record ProductRequest(
 
         @NotEmpty(message = "Image URLs cannot be blank")
+        @Valid
         List<ProductImagesRequest> imagesUrl,
 
         @NotBlank(message = "Name cannot be blank")
