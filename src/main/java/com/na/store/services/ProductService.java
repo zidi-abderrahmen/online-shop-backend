@@ -4,6 +4,7 @@ import com.na.store.dtos.product.ProductRequest;
 import com.na.store.dtos.product.ProductResponse;
 import com.na.store.entities.Product;
 import com.na.store.entities.ProductImages;
+import com.na.store.entities.ProductVariant;
 import com.na.store.exceptions.AlreadyExistsException;
 import com.na.store.exceptions.NotFoundException;
 import com.na.store.mappers.ProductResponseMapper;
@@ -13,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,19 +45,28 @@ public class ProductService {
                 .name(request.name())
                 .description(request.description())
                 .price(request.price())
-                .sizes(request.sizes())
-                .stock(request.stock())
+                .category(request.category())
                 .build();
 
-        List<ProductImages> images = request.imagesUrl().stream()
+        Set<ProductVariant> variants = request.variants().stream()
+                .map(var -> ProductVariant.builder()
+                        .color(var.color())
+                        .stock(var.stock())
+                        .sizes(var.sizes())
+                        .product(product)
+                        .build())
+                .collect(Collectors.toSet());
+
+        Set<ProductImages> images = request.imagesUrl().stream()
                 .map(img -> ProductImages.builder()
                         .url(img.url())
                         .altText(img.altText())
                         .product(product)
                         .build())
-                .toList();
+                .collect(Collectors.toSet());
 
         product.setImagesUrl(images);
+        product.setVariants(variants);
 
         return productResponseMapper.toDto(productRepository.save(product));
     }
@@ -69,19 +81,28 @@ public class ProductService {
             throw new AlreadyExistsException("Product with name '" + request.name() + "' already exists");
         }
 
-        List<ProductImages> images = request.imagesUrl().stream()
+        Set<ProductImages> images = request.imagesUrl().stream()
                 .map(img -> ProductImages.builder()
                         .url(img.url())
                         .altText(img.altText())
                         .product(product)
                         .build())
-                .toList();
+                .collect(Collectors.toSet());
+
+        Set<ProductVariant> variants = request.variants().stream()
+                .map(var -> ProductVariant.builder()
+                        .color(var.color())
+                        .stock(var.stock())
+                        .sizes(var.sizes())
+                        .product(product)
+                        .build())
+                .collect(Collectors.toSet());
 
         product.setName(request.name());
         product.setDescription(request.description());
         product.setPrice(request.price());
-        product.setSizes(request.sizes());
-        product.setStock(request.stock());
+        product.setVariants(variants);
+        product.setCategory(request.category());
         product.setImagesUrl(images);
 
         return productResponseMapper.toDto(product);
