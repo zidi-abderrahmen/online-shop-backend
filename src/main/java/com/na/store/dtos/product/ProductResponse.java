@@ -1,10 +1,13 @@
 package com.na.store.dtos.product;
 
 import com.na.store.dtos.product.images.ProductImageResponse;
+import com.na.store.dtos.product.variant.ProductVariantResponse;
+import com.na.store.enums.ClotheCategory;
 import com.na.store.enums.ClotheSize;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 public record ProductResponse(
         Long id,
@@ -12,6 +15,6 @@ public record ProductResponse(
         String name,
         String description,
         BigDecimal price,
-        int stock,
-        List<ClotheSize> sizes
+        ClotheCategory category,
+        Set<ProductVariantResponse> variants
 ) {}
