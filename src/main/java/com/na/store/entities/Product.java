@@ -1,9 +1,8 @@
 package com.na.store.entities;
 
-import com.na.store.enums.ClotheSize;
+import com.na.store.enums.ClotheCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
@@ -13,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity @Table(name = "products")
 @AllArgsConstructor @NoArgsConstructor
@@ -25,7 +25,7 @@ public class Product {
     private Long id;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImages> imagesUrl;
+    private Set<ProductImages> imagesUrl;
 
     @NotBlank(message = "Name cannot be blank")
     @Column(nullable = false, unique = true, length = 100)
@@ -40,12 +40,12 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Positive(message = "Stock must be positive")
     @Column(nullable = false)
-    private int stock;
-
     @Enumerated(EnumType.STRING)
-    private List<ClotheSize> sizes;
+    private ClotheCategory category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductVariant> variants;
 
     @Version
     private Integer version;
