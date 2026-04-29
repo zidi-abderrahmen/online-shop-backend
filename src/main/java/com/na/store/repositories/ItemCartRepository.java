@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface ItemCartRepository extends JpaRepository<ItemCart, Long> {
 
-    List<ItemCart> findByUserId(String userId);
+    @Query("SELECT ic FROM ItemCart ic WHERE ic.user.email = :email")
+    List<ItemCart> findByUserEmail(@Param("email") String email);
 
     @Query("SELECT ic FROM ItemCart ic WHERE ic.user.email = :email AND ic.product.id = :productId")
     Optional<ItemCart> findCartItem(@Param("email") String email, @Param("productId") Long productId);

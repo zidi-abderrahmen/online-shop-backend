@@ -27,8 +27,8 @@ public class ItemCartService {
     private final ItemCartRepository itemCartRepository;
     private final ItemCartMapper itemCartMapper;
 
-    public List<ItemCartResponse> getCart(String userId) {
-        return itemCartRepository.findByUserId(userId).stream().map(itemCartMapper::toDto).toList();
+    public List<ItemCartResponse> getCart(String email) {
+        return itemCartRepository.findByUserEmail(email).stream().map(itemCartMapper::toDto).toList();
     }
 
     public ItemCartResponse saveInCart(ItemCartRequest request, String userEmail) {
