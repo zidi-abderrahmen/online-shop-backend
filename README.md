@@ -6,16 +6,16 @@ A production-ready **Spring Boot** e-commerce REST API featuring JWT-based authe
 
 ## 📑 Table of Contents
 
-- [Tech Stack](#tech-stack)
-- [Architecture Overview](#architecture-overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Configuration](#configuration)
-- [API Reference](#api-reference)
-- [Security Model](#security-model)
-- [Database Schema](#database-schema)
-- [Error Handling](#error-handling)
+- [Tech Stack](#-tech-stack)
+- [Architecture Overview](#-architecture-overview)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Configuration](#-configuration)
+- [API Reference](#-api-reference)
+- [Security Model](#-security-model)
+- [Database Schema](#-database-schema)
+- [Error Handling](#-error-handling)
 
 ---
 
