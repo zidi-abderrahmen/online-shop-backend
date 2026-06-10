@@ -1,6 +1,6 @@
 # 🛍️ Online Store — REST API
 
-A production-ready **Spring Boot** e-commerce REST API featuring JWT-based authentication, refresh token rotation, role-based access control, and a full product and cart management system.
+A **Spring Boot** e-commerce REST API featuring JWT-based authentication, refresh token rotation, role-based access control, and a full product and cart management system.
 
 ---
 
