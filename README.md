@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot 3.x" />
+  <img src="https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL 14+" />
+  <img src="https://img.shields.io/badge/Gradle-8%2B-02303A?logo=gradle&logoColor=white" alt="Gradle 8+" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" />
+</p>
+
 # 🛍️ Online Store — REST API
 
 A **Spring Boot** e-commerce REST API featuring JWT-based authentication, refresh token rotation, role-based access control, and a full product and cart management system.
